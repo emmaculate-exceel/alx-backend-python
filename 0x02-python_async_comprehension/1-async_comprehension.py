@@ -10,4 +10,4 @@ async def async_comprehension() -> Generator[float, None, None]:
     """ async comprehension """
     for _ in range(10):
         await asyncio.sleep(1)
-        random.randint(1.0, 10.0) 
+        random.randint(1.0, 10.0)

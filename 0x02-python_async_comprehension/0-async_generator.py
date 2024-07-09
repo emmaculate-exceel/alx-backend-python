@@ -5,7 +5,7 @@ import asyncio
 import typing import Generator
 
 
-async def async_generator() -> Generator[float: None, None]:
+async def async_generator() -> Generator[float, None, None]:
     """ function for generating the async loops """
     for i in range(10):
         await asyncio.sleep(1)

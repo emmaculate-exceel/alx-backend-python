@@ -2,7 +2,6 @@
 """ list comprehension """
 import random
 import asyncio
-import typing import Generator
 
 
 async def async_generator():

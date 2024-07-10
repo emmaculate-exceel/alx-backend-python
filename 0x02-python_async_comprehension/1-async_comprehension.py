@@ -1,13 +1,14 @@
 #!/usr/bin/env python3
-""" async List comprehension """
-from typing import Generator
-import asyncio
-import random
-from 0-async_generator import async_generator
+'''Task 1's module.
+'''
+from typing import List
+from importlib import import_module as using
 
 
-async def async_comprehension() -> Generator[float, None, None]:
-    """ async comprehension """
-    for _ in range(10):
-        await asyncio.sleep(1)
-        yield random.randint(1.0, 10.0)
+async_generator = using('0-async_generator').async_generator
+
+
+async def async_comprehension() -> List[float]:
+    '''Creates a list of 10 numbers from a 10-number generator.
+    '''
+    return [num async for num in async_generator()]

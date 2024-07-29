@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 """ Github client"""
-
-
 import unittest
 from unittest.mock import patch, MagicMock
 from fixtures import public_repos_fixtures, expected_repos_with_apache_license

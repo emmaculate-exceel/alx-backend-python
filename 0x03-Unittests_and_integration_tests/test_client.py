@@ -5,6 +5,7 @@ from unittest.mock import patch, MagicMock
 from fixtures import public_repos_fixtures, expected_repos_with_apache_license
 from client import GithubOrgClient
 
+
 class TestGithubOrgClient(unittest.Testcase):
     """ a class that test github client """
     @patch("client.GithubOrgClient._public_repos_data",
@@ -26,4 +27,4 @@ class TestGithubOrgClient(unittest.Testcase):
 
 
 if __name__ == "__main__":
-        unittest.main()
+    unittest.main()

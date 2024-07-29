@@ -16,7 +16,8 @@ class TestGithubOrgClient(unittest.Testcase):
         """Test public repos """
         client: GithubOrgClient = GithubOrgClient('test_org')
         result: List[str] = client.public_repos()
-        expected_result: List[str] = [repo['name'] for repo in public_repos_fixture]
+        expected_result: List[str] = [
+            repo['name'] for repo in public_repos_fixture]
         self.assertEqual(result, expected_result)
 
     @patch('client.GithubOrgClient._public_repos_data',

@@ -11,6 +11,18 @@ from unittest import mock
 from unittest.mock import patch, Mock, PropertyMock
 from client import GithubOrgClient
 from fixtures import TEST_PAYLOAD
+from utils import access_nested_map
+
+
+class TestAccessNestedMap(unittest.TestCase):
+    @parameterized.expand([
+        ({"a": 1}, ("a",), 1),
+        ({"a": {"b": 2}}, ("a",), {"b": 2}),
+        ({"a": {"b": 2}}, ("a", "b"), 2),
+    ])
+    def test_access_nested_map(self, nested_map, path, expected):
+        self.assertEqual(access_nested_map(nested_map, path), expected)
+
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -18,8 +30,9 @@ class TestGithubOrgClient(unittest.TestCase):
     Test the GithubOrgClient class methods
     """
     @parameterized.expand([
-        ("google"),
-        ("abc")
+        ({"a": 1}, ("a",), 1),
+        ({"a": {"b": 2}}, ("a",), {"b": 2}),
+        ({"a": {"b": 2}}, ("a", "b"), 2)
     ])
     @patch('client.get_json', return_value={"payload": True})
     def test_org(self, org, mock_org):

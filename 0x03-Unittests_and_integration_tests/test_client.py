@@ -28,4 +28,5 @@ class TestGithubOrgClient(unittest.Testcase):
 
 
 if __name__ == "__main__":
+    """ if name is main run the unittest """
     unittest.main()

@@ -1,9 +1,12 @@
 #!/usr/bin/env python3
 """ Github client"""
 import unittest
-from unittest.mock import patch, MagicMock
-from fixtures import public_repos_fixtures, expected_repos_with_apache_license
+from urllib import response
+from parameterized import parameterized, parameterized_class
+from unittest import mock
+from unittest.mock import patch, Mock, PropertyMock
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.Testcase):

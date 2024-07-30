@@ -109,63 +109,41 @@ def requests_get(*args, **kwargs):
     [(TEST_PAYLOAD[0][0], TEST_PAYLOAD[0][1], TEST_PAYLOAD[0][2],
       TEST_PAYLOAD[0][3])]
 )
-###############################################
 class TestIntegrationGithubOrgClient(unittest.TestCase):
     """
     Integration test for the GithubOrgClient.public_repos method
-    ""
+    """
     @classmethod
     def setUpClass(cls):
-        ""
+        """
         Set up function for TestIntegrationGithubOrgClient class
         Sets up a patcher to be used in the class methods
-        ""
+        """
         cls.get_patcher = patch('utils.requests.get', side_effect=requests_get)
         cls.get_patcher.start()
         cls.client = GithubOrgClient('google')
 
     @classmethod
     def tearDownClass(cls):
-        ""
+        """
         Tear down resources set up for class tests.
         Stops the patcher that had been started
-        ""
+        """
         cls.get_patcher.stop()
 
     def test_public_repos(self):
-        ""
+        """
         Test public_repos method without license
-        ""
+        """
         self.assertEqual(self.client.public_repos(), self.expected_repos)
 
     def test_public_repos_with_license(self):
-        ""
+        """
         Test public_repos method with license
-        ""
+        """
         self.assertEqual(
             self.client.public_repos(license="apache-2.0"),
-            self.apache2_repos)###############
-"""
-    """ a class that test github client """
-    @patch("client.GithubOrgClient._public_repos_data",
-           return_value=public_repos_fixture)
-    def test_public_repos(self, mock_repos: MagicMock) -> None:
-        """Test public repos """
-        client: GithubOrgClient = GithubOrgClient('test_org')
-        result: List[str] = client.public_repos()
-        expected_result: List[str] = [
-            repo['name'] for repo in public_repos_fixture]
-        self.assertEqual(result, expected_result)
-
-    @patch('client.GithubOrgClient._public_repos_data',
-           return_value=public_repos_fixture)
-    def test_public_repos_with_license(self, mock_repos: MagicMock): -> None:
-        """ test public repos with license """
-        client: GithubOrgClient = GithubOrgClient("test_org")
-        result: List[str] = client.public_repos(license='apache-2.0')
-        self.assertEqual(result, expected_repos_with_apache_license)
-
+            self.apache2_repos)
 
 if __name__ == "__main__":
-    """ if name is main run the unittest """
     unittest.main()
